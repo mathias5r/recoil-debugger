@@ -12,10 +12,13 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
+    socket.emit('init')
     socket.on('content', function (msg) {
       new JsonViewer({
         value: msg,
         defaultInspectDepth: 1,
+        style: { backgroundColor: '#232323' },
+        theme: 'dark'
       }).render('#json-viewer')
     });
   </script>

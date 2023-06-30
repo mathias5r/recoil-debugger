@@ -6,7 +6,7 @@ const app = express()
 const server = http.createServer(app);
 const io = new Server(server);
 
-const data = {}
+const data: any[] = []
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
@@ -14,10 +14,17 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+
   socket.on('change', (msg) => {
-    console.log(msg)
-    Object.assign(data, { [msg.key]: msg.payload.contents })
-    io.emit("content", data)
+    const latestData = {...data[data.length - 1] } || {}
+    Object.assign(latestData, { [msg.key]: msg.payload.contents, date: new Date() })
+    data.push(latestData)
+    io.emit("content", latestData)
+  });
+  
+  socket.on('init', (msg) => {
+    const latestData = data[data.length - 1]
+    io.emit("content", latestData)
   });
 });
 
