@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>recoil debugger</title>
+</head>
+
+<body>
+  <div id="json-viewer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@textea/json-viewer@3"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('content', function (msg) {
+      new JsonViewer({
+        value: msg,
+        defaultInspectDepth: 1,
+      }).render('#json-viewer')
+    });
+  </script>
+</body>
+
+</html>
