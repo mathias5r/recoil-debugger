@@ -5,7 +5,7 @@
   "author": "Mathias Silva da Rosa",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "dev": "nodemon --watch '**/*.ts' --exec 'ts-node' index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
@@ -17,6 +17,7 @@
     "typescript": "^5.1.5"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "socket.io": "^4.7.1"
   }

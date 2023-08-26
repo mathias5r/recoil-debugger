@@ -1,10 +1,13 @@
 import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
+import cors, { CorsOptions } from 'cors'
 
 const app = express()
+app.use(cors());
+
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, { cors: '*' as CorsOptions});
 
 const data: any[] = []
 
@@ -16,6 +19,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('change', (msg) => {
+    console.log(JSON.stringify(msg, null, 2))
     const latestData = {...data[data.length - 1] } || {}
     Object.assign(latestData, { [msg.key]: msg.payload.contents, date: new Date() })
     data.push(latestData)
