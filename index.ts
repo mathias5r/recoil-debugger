@@ -4,7 +4,6 @@ import { Server } from 'socket.io'
 import cors, { CorsOptions } from 'cors'
 
 const app = express()
-
 app.use(cors());
 
 const server = http.createServer(app);
@@ -20,8 +19,8 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('change', (msg) => {
-    const latestData = {...data[data.length - 1] } || {}
     console.log(JSON.stringify(msg, null, 2))
+    const latestData = {...data[data.length - 1] } || {}
     Object.assign(latestData, { [msg.key]: msg.payload.contents, date: new Date() })
     data.push(latestData)
     io.emit("content", latestData)

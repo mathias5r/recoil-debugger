@@ -9,11 +9,12 @@ const onConnect = () => console.log('connected');
 const onDisconnect = () => console.log('disconnected');
 
 const Home: React.FC = () => {
-  const [content, setContent] = useState<unknown>({})
+  const [data, setData] = useState<unknown[]>([])
+  const [current, setCurrent] = useState<unknown>();
 
   const onRecoilData = (value: unknown) => {
-    console.log('new recoil data', value)
-    setContent(value)
+    setData(prev => [...prev, value]);
+    setCurrent(value);
   }
 
   useEffect(() => {
@@ -31,10 +32,20 @@ const Home: React.FC = () => {
 
   return <div id="container">
     <div id="data-wrapper">
-      <ReactJson src={content as object} theme="bright" />
+      {current ? 
+        <ReactJson src={current} theme="bright" /> : 
+        <h1>no data to be shown</h1>
+      }
     </div>
     <div id="history-wrapper">
-      <div id="test"></div>
+      {data.map(item => 
+        <div>
+          <button 
+            onClick={() => setCurrent(item)} 
+            className="btn default">
+              {item.date}
+          </button>
+        </div>)}
     </div>
   </div>;
 }
