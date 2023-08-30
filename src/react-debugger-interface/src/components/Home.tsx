@@ -11,10 +11,19 @@ const onDisconnect = () => console.log('disconnected');
 const Home: React.FC = () => {
   const [data, setData] = useState<unknown[]>([])
   const [current, setCurrent] = useState<unknown>();
+  const [collapseSize, setCollapseSize] = useState(10);
 
   const onRecoilData = (value: unknown) => {
     setData(prev => [...prev, value]);
     setCurrent(value);
+  }
+
+  const onSizeChange = () => {
+    if(collapseSize > 1) {
+      setCollapseSize(1)
+    } else {
+      setCollapseSize(10)
+    }
   }
 
   useEffect(() => {
@@ -32,8 +41,9 @@ const Home: React.FC = () => {
 
   return <div id="container">
     <div id="data-wrapper">
+      <button onClick={onSizeChange}>{collapseSize === 1 ? 'inflate': 'collapse'}</button>
       {current ? 
-        <ReactJson src={current} theme="bright" /> : 
+        <ReactJson src={current} theme="bright" collapsed={collapseSize} /> : 
         <h1>no data to be shown</h1>
       }
     </div>
@@ -43,7 +53,7 @@ const Home: React.FC = () => {
           <button 
             onClick={() => setCurrent(item)} 
             className="btn default">
-              {item.date}
+              {item?.date}
           </button>
         </div>)}
     </div>
