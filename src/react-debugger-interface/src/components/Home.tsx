@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import { socket } from '../socket';
 
 import './Home.css'
@@ -8,10 +9,36 @@ import ReactJson from 'react-json-view'
 const onConnect = () => console.log('connected');
 const onDisconnect = () => console.log('disconnected');
 
+const getPaths = (obj: Record<string, any>, parentKey: string = ''): string[] => {
+  let paths: string[] = [];
+
+  for (const key in obj) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (obj.hasOwnProperty(key)) {
+      const currentPath = parentKey ? `${parentKey}.${key}` : key;
+
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
+        const nestedPaths = getPaths(obj[key], currentPath);
+        paths = paths.concat(nestedPaths);
+      } else {
+        const fullPath = currentPath + '.' + obj[key]; // Concatenate the value
+        paths.push(fullPath);
+      }
+    }
+  }
+
+  return paths;
+};
+
 const Home: React.FC = () => {
   const [data, setData] = useState<unknown[]>([])
   const [current, setCurrent] = useState<unknown>();
   const [collapseSize, setCollapseSize] = useState(10);
+  const [search, setSearch] = useState('');
+
+  const paths = getPaths(current as Record<string, any>)
+
+  const json = search ? paths.filter((path) => path.includes(search)) : current;
 
   const onRecoilData = (value: unknown) => {
     setData(prev => [...prev, value]);
@@ -42,8 +69,9 @@ const Home: React.FC = () => {
   return <div id="container">
     <div id="data-wrapper">
       <button onClick={onSizeChange}>{collapseSize === 1 ? 'inflate': 'collapse'}</button>
-      {current ? 
-        <ReactJson src={current} theme="bright" collapsed={collapseSize} /> : 
+      <input name="myInput" placeholder='search path (separator: ".")' onChange={(e) => setSearch(e.target.value)} />
+      {json ? 
+        <ReactJson src={json} theme="bright" collapsed={collapseSize} /> : 
         <h1>no data to be shown</h1>
       }
     </div>

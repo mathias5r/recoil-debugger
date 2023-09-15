@@ -25,3 +25,7 @@
 .btn:hover {background: #eee; color: black}
 
 .default {color: white;}
+
+input {
+  width: 50%;
+}
