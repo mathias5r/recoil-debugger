@@ -53,6 +53,11 @@ const Home: React.FC = () => {
     }
   }
 
+  const onClear = () => {
+    setCurrent({});
+    setData([]);
+  }
+
   useEffect(() => {
     socket.emit('init')
     socket.on('connect', onConnect);
@@ -70,6 +75,7 @@ const Home: React.FC = () => {
     <div id="data-wrapper">
       <button onClick={onSizeChange}>{collapseSize === 1 ? 'inflate': 'collapse'}</button>
       <input name="myInput" placeholder='search path (separator: ".")' onChange={(e) => setSearch(e.target.value)} />
+      <button onClick={onClear}>clear</button>
       {json ? 
         <ReactJson src={json} theme="bright" collapsed={collapseSize} /> : 
         <h1>no data to be shown</h1>
