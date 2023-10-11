@@ -1,7 +1,6 @@
 #body {
   height: 100%;
   margin: 0;
-  background-color: #D9D9D9;
 }
 
 .box {
@@ -11,7 +10,7 @@
 }
 
 .box .row {
-  border: 1px solid grey;
+  border-top: 1px solid grey;
 }
 
 .box .row.header {
@@ -37,7 +36,6 @@
 .box .row.content #menu {
   display: flex;
   width: 50px;
-  height: 100%;
   background-color: white;
   align-items: center;
   padding-block: 10px;
@@ -51,6 +49,20 @@
   flex-direction: column;
   margin: 12px;
   border: 1px solid grey;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.box .row.content #timeline {
+  flex: 1;
+  background-color: white;
+  flex-direction: column;
+  margin: 12px;
+  border: 1px solid grey;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
 }
 
 .box .row.content #selected {

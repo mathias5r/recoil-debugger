@@ -4,8 +4,12 @@ import homeIcon from '../assets/imgs/home-icon.png'
 import analyticsIcon from '../assets/imgs/analytics-icon.png'
 
 import './Main.css'
+import useSocket from '../hooks/useSocket'
+import JsonViewer from './JsonViewer'
 
 const Home: React.FC = () => {
+  useSocket()
+
   return <div id="body">
     <div className="box">
       <div className="row header">
@@ -22,8 +26,9 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div id="json-viewer">
+          <JsonViewer />
         </div>
-        <div id="json-viewer">
+        <div id="timeline">
         </div>
       </div>
     </div>
