@@ -29,21 +29,25 @@ const getPaths = (obj: Record<string, unknown>, parentKey: string = ''): string[
 };
 
 const JsonViewer: React.FC = () => {
-  const { data, setData } = useContext(DataContext)
+  const { setData, current, setCurrent } = useContext(DataContext)
   const [search, setSearch] = useState('');
-  const current = data.slice(-1)[0]
-  const paths = getPaths(current as Record<string, unknown>)
+  const paths = current ? getPaths(current as Record<string, unknown>) : []
   const json = search ? paths.filter((path) => path.includes(search)) : current;
+
+  const handleClean = () => {
+    setData([]);
+    setCurrent({});
+  }
 
   return (
     <div id="container">
       <input name="myInput" placeholder='search path (separator: ".")' onChange={(e) => setSearch(e.target.value)} />
       <div id="data-wrapper">
         {json ? 
-          <ReactJson src={json} /> : 
+          <ReactJson src={json} onEdit={search ? false : (edit) => console.log(edit)} name={null} /> : 
           <h1>no data to be shown</h1>
         }
-        <button onClick={() => setData([])}>clear</button>
+        <button onClick={handleClean}>clear</button>
       </div>
     </div>
   )

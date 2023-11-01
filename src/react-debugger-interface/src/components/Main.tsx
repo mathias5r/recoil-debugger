@@ -6,6 +6,7 @@ import analyticsIcon from '../assets/imgs/analytics-icon.png'
 import './Main.css'
 import useSocket from '../hooks/useSocket'
 import JsonViewer from './JsonViewer'
+import Timeline from './Timeline'
 
 const Home: React.FC = () => {
   useSocket()
@@ -29,6 +30,7 @@ const Home: React.FC = () => {
           <JsonViewer />
         </div>
         <div id="timeline">
+          <Timeline />
         </div>
       </div>
     </div>

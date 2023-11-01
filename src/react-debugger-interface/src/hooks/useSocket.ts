@@ -6,10 +6,11 @@ const onConnect = () => console.log('connected');
 const onDisconnect = () => console.log('disconnected');
 
 export default () => {
-  const { data, setData } = useContext(DataContext);
+  const { setData, setCurrent } = useContext(DataContext);
 
   const onRecoilData = (value: unknown) => {
-    setData([...data, value as Data])
+    setCurrent({...value as Data, date: new Date() })
+    setData((prev: Data[]) => [...prev, {...value as Data, date: new Date() }])
   }
 
   useEffect(() => {

@@ -6,8 +6,9 @@ import { useState } from 'react'
 
 function App() {
   const [data, setData] = useState<Data[]>([])
+  const [current, setCurrent] = useState<Data | null>(null)
   return (
-    <DataContext.Provider value={{data, setData}}>
+    <DataContext.Provider value={{data, setData, current, setCurrent}}>
         <Main />
     </DataContext.Provider>
   )

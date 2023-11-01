@@ -62,7 +62,6 @@
   border: 1px solid grey;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 20px;
 }
 
 .box .row.content #selected {
