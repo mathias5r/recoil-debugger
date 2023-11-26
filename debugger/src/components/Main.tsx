@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/imgs/recoil-debugger-logo.png'
 import homeIcon from '../assets/imgs/home-icon.png'
-import analyticsIcon from '../assets/imgs/analytics-icon.png'
+// import analyticsIcon from '../assets/imgs/analytics-icon.png'
 
 import './Main.css'
 import useSocket from '../hooks/useSocket'
@@ -22,9 +22,9 @@ const Home: React.FC = () => {
           <div id="selected">
             <img id="home-icon" src={homeIcon} width={30} height={28}  />
           </div>
-          <div>
+          {/* <div>
             <img id="analytics-icon" src={analyticsIcon} width={30} height={28}  />
-          </div>
+          </div> */}
         </div>
         <div id="json-viewer">
           <JsonViewer />

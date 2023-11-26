@@ -1,0 +1,108 @@
+p {
+  color: black;
+}
+
+button {
+  background-color: white;
+}
+
+.btn-wrapper {
+  flex: 1;
+}
+
+#container {
+  margin: 0;
+  display: flex;
+  height: calc(100vh - 120px);
+  flex-direction: column;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 30px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.267);
+  padding-bottom: 20px;
+}
+
+#header p {
+  color:  rgba(128, 128, 128, 0.5)
+}
+
+#time {
+  color: #3578E5
+}
+
+#diff {
+  font-weight: bold;
+}
+
+#btn-container {
+  display: flex;
+  flex: 1;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.267);
+  align-items: center;
+}
+
+#timeline-button {
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  color: black;
+}
+
+.unknown {
+  color: grey;
+  padding: 5px 5px;
+}
+
+div > .unknown {
+  background-color: rgba(128, 128, 128, 0.267);
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.update {
+  color: #E5A832;
+  padding: 5px 5px;
+}
+
+div > .update {
+  background-color: #E5A83250;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.addition {
+  color: #26BD4E;
+  padding: 5px 5px;
+}
+
+div > .addition {
+  background-color: #26BD4E50;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.addition {
+  color: #26BD4E;
+  padding: 5px 5px;
+}
+
+div > .addition {
+  background-color: #26BD4E50;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.deletion {
+  color: #FF4966;
+  padding: 5px 5px;
+}
+
+div > .deletion {
+  background-color: #FF496650;
+  border-radius: 5px;
+  display: inline-block;
+}

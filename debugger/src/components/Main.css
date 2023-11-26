@@ -10,7 +10,6 @@
 }
 
 .box .row {
-  border-top: 1px solid grey;
 }
 
 .box .row.header {
@@ -18,6 +17,7 @@
   height: 50px;
   align-items: center;
   background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .box .row.header #title {
@@ -40,28 +40,29 @@
   align-items: center;
   padding-block: 10px;
   flex-direction: column;
-  border-inline: 1px solid grey;
+  box-shadow: 18px 16px 19px -10px rgba(0, 0, 0, 0.19);
 }
 
 .box .row.content #json-viewer {
   flex: 1;
   background-color: white;
   flex-direction: column;
-  margin: 12px;
-  border: 1px solid grey;
+  margin: 12px 6px 12px 12px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .box .row.content #timeline {
   flex: 1;
   background-color: white;
   flex-direction: column;
-  margin: 12px;
-  border: 1px solid grey;
+  margin: 12px 12px 12px 6px;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .box .row.content #selected {
